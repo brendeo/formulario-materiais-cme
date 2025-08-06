@@ -103,19 +103,19 @@
         materiais
       };
 
-      fetch(URL_SCRIPT, {
+       fetch(URL_SCRIPT, {
         method: 'POST',
-        mode: 'no-cors', // 🔧 Essencial para evitar bloqueio CORS
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
       })
-      .then(() => {
-        alert("Solicitação enviada com sucesso!");
-        form.reset();
+      .then(response => response.text())
+       .then(msg => {
+        alert("Servidor respondeu: " + msg);
+       form.reset();
         container.innerHTML = '';
-        criarLinhaMaterial();
+         criarLinhaMaterial();
       })
       .catch(err => {
         console.error(err);
